@@ -8,8 +8,22 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        
+    <div class="gameboard" data-container>
+        <div class="cell top-left" data-cell="0"></div>
+        <div class="cell top-center" data-cell="1"></div>
+        <div class="cell top-right" data-cell="2"></div>
+        <div class="cell middle-left" data-cell="3"></div>
+        <div class="cell middle-center" data-cell="4"></div>
+        <div class="cell middle-right" data-cell="5"></div>
+        <div class="cell bottom-left" data-cell="6"></div>
+        <div class="cell bottom-center" data-cell="7"></div>
+        <div class="cell bottom-tight" data-cell="8"></div>
+    </div>
+
+    <div class="results">
+        <div class="player-result" data-player-result>PLAYER <span class="score" data-score>0</span></div>
+        <div class="tie-result" data-tie-result>TIE <span class="score" data-score>0</span></div>
+        <div class="computer-result" data-computer-result>COMPUTER <span class="score" data-score>0</span></div>
     </div>
 </body>
 </html>
