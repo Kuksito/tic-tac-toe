@@ -8,6 +8,7 @@
 }
   
 body {
+    box-sizing: border-box;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
 }
@@ -29,9 +30,113 @@ p, h1, h2, h3, h4, h5, h6 {
     isolation: isolate;
 }
 
-.container{
+.gameboard{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     width: 600px;
-    height: 300px;
-    margin: 100px auto;
-    background-color: aqua;
+    height: 600px;
+    margin: 100px auto 10px;
+    background-color: #303133e6;
+}
+
+.cell{
+    border-width: 5px;
+    border-color: #000;
+    cursor: pointer;
+}
+
+.top-left, .middle-left, .top-center, 
+.middle-center, .top-right, .middle-right{
+    border-bottom-style: solid;
+}
+
+.top-left, .top-center, .middle-left, 
+.middle-center, .bottom-left, .bottom-center{
+    border-right-style: solid;
+}
+
+/* when computer randomly choose a cell */
+
+.cell.o, .cell.x{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.o::before{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 23px;
+    left: 23px;
+    border-radius: 50%;
+    border: 10px solid #fff;
+    width: 150px;
+    height: 150px;
+}
+
+/* when player click on a cell */
+
+.cell.x::before, .cell.x::after{
+    left: 90px;
+    top: 10px;
+    height: 174px;
+    width: 15px;
+    border-radius: 3px;
+}
+
+.x::before{
+    transform: rotate(-45deg);
+}
+
+
+.x::before, .x::after{
+    content: '';
+    position: absolute;
+    display: block;
+    background: #fff;
+}
+
+.x::after{
+    transform: rotate(45deg);
+}
+
+.results{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    background-color: #303133e6;
+    margin: 0 auto;
+    width: 600px;
+    height: 80px;
+    color: #fff;
+}
+
+.player-result, .tie-result, .computer-result{
+    display: grid;
+    position: relative;
+    width: 200px;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.player-result::before{
+    content: '(X)';
+    position: absolute;
+    left: 145px;
+}
+
+.computer-result::before{
+    content: '(O)';
+    position: absolute;
+    right: 15px;
+}
+
+.score{
+    font-size: 2rem;
+    display: flex;
+    height: 34px;
+    align-items: center;
+    justify-content: center;
 }
