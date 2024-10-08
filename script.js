@@ -1,14 +1,37 @@
 const startGame = () => {
     const cells = document.querySelectorAll('[data-cell]');
     const scoreContainer = document.querySelectorAll('[data-score]');
+    const nameOneInput = document.querySelector('#nameOne');
+    const nameTwoInput = document.querySelector('#nameTwo');
+    const startBtn = document.querySelector('[data-start]');
+    const restartBtn = document.querySelector('[data-restart]');
+
+    startBtn.addEventListener('click', () =>{
+        const playerOne = document.querySelector('[data-player-one]');
+        const playerTwo = document.querySelector('[data-player-two]');
+        playerOne.textContent = (nameOneInput.value).toUpperCase();
+        playerTwo.textContent = (nameTwoInput.value).toUpperCase();
+
+        if(nameOneInput.value === ''){
+            playerOne.textContent = 'PLAYER ONE';
+        }
+        if(nameTwoInput.value === ''){
+            playerTwo.textContent = 'PLAYER TWO';
+        }
+        document.querySelector('[data-names]').style.display = 'none';
+        restartBtn.style.display = 'flex';
+        displayPlayerChoice();
+    });
+
+    restartBtn.addEventListener('click', () => {
+        location.reload();
+    });
 
     let gameboard = [
         [],
         [],
     ];
-
     let score = 0;
-
     const victory = [
         [0,1,2],
         [3,4,5],
@@ -18,12 +41,11 @@ const startGame = () => {
         [2,5,8],
         [0,4,8],
         [2,4,6],
-    ]
+    ];
 
     const checkVictory = (arr1, arr2) => {
         return arr1.every(item => arr2.includes(item));
     };
-
 
     const checkForWinner = () => {
         if(
@@ -35,14 +57,9 @@ const startGame = () => {
             || checkVictory(victory[5], gameboard[0])
             || checkVictory(victory[6], gameboard[0])
             || checkVictory(victory[7], gameboard[0])){
-            console.log('player one win');
             score++;
             getPlayerOneScore(score);
-            cells.forEach(cell => 
-                cell.addEventListener('click', (e)=> {
-                    e.stopPropagation(); e.preventDefault();
-                }, true)
-            );
+            stopGame();
         } 
         if(
             checkVictory(victory[0], gameboard[1])
@@ -53,31 +70,42 @@ const startGame = () => {
             || checkVictory(victory[5], gameboard[1])
             || checkVictory(victory[6], gameboard[1])
             || checkVictory(victory[7], gameboard[1])){
-            console.log('player two win');
             score++;
             getPlayerTwoScore(score);
-            cells.forEach(cell => 
-                cell.addEventListener('click', (e)=> {
-                    e.stopPropagation(); e.preventDefault();
-                }, true)
-            );
+            stopGame();
         } 
         // CHECK FOR A DRAW
-        // if(!checkVictory(victory, gameboard[1]) || !checkVictory(victory, gameboard[1])){
-        //     console.log("it's a draw")
-        //     score++;
-        //     getTieScore(score);
-        // }
+        if(gameboard[0].length === 5 
+            && gameboard[1].length === 4 
+            && !checkVictory(victory[0], gameboard[0])
+            && !checkVictory(victory[1], gameboard[0])
+            && !checkVictory(victory[2], gameboard[0])
+            && !checkVictory(victory[3], gameboard[0])
+            && !checkVictory(victory[4], gameboard[0])
+            && !checkVictory(victory[5], gameboard[0])
+            && !checkVictory(victory[6], gameboard[0])
+            && !checkVictory(victory[7], gameboard[0])
+            && !checkVictory(victory[0], gameboard[1])
+            && !checkVictory(victory[1], gameboard[1])
+            && !checkVictory(victory[2], gameboard[1])
+            && !checkVictory(victory[3], gameboard[1])
+            && !checkVictory(victory[4], gameboard[1])
+            && !checkVictory(victory[5], gameboard[1])
+            && !checkVictory(victory[6], gameboard[1])
+            && !checkVictory(victory[7], gameboard[1])
+        ){
+            score++;
+            getTieScore(score);
+            stopGame();
+        }
     };
-
-    console.log(gameboard);
   
     const players = [
         {
-            id: 0
+            id: 0,
         },
         {
-            id: 1
+            id: 1,
         }
     ];
     
@@ -111,7 +139,7 @@ const startGame = () => {
     const getPlayerOneScore = function(number){
         for(let i = 0; i < scoreContainer.length; i++){
             score = number;
-            scoreContainer[0].textContent = score
+            scoreContainer[0].textContent = score;
         };
     };
 
@@ -120,20 +148,26 @@ const startGame = () => {
             score = number;
             scoreContainer[1].textContent = score;                
         };
-    }
+    };
 
     const getPlayerTwoScore = function(number){
         for(let i = 0; i < scoreContainer.length; i++){
             score = number;
             scoreContainer[2].textContent = score;                
         };
-    }
+    };
+
+    const stopGame = () => {
+        cells.forEach(cell => 
+            cell.addEventListener('click', (e)=> {
+                e.stopPropagation(); e.preventDefault();
+            }, true)
+        );
+    };
 
     return {displayPlayerChoice};
 
 };
 
 const game = startGame();
-game.displayPlayerChoice();
-
 
