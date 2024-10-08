@@ -8,6 +8,18 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="players-names" data-names>
+        <label for="nameOne">Player One Name:
+            <input type="text" id="nameOne">
+        </label>
+        <label for="nameTwo">Player Two Name:
+            <input type="text" id="nameTwo">
+        </label>
+        <button class="start btn" data-start>Start Game</button>
+    </div>
+
+    <button class="restart btn" data-restart>RESTART</button>
+    
     <div class="gameboard" data-container>
         <div class="cell top-left" data-cell="0"></div>
         <div class="cell top-center" data-cell="1"></div>
@@ -21,9 +33,9 @@
     </div>
 
     <div class="results">
-        <div class="player-one-result"><span class="player">PLAYER ONE</span><span class="score" data-score>0</span></div>
-        <div class="tie-result">TIE <span class="score">0</span></div>
-        <div class="player-two-result"><span class="player">PLAYER TWO</span><span class="score" data-score>0</span></div>
+        <div class="player-one-result"><span class="player" data-player-one>PLAYER ONE</span><span class="score" data-score>0</span></div>
+        <div class="tie-result">TIE <span class="score" data-score>0</span></div>
+        <div class="player-two-result"><span class="player" data-player-two>PLAYER TWO</span><span class="score" data-score>0</span></div>
     </div>
 </body>
 </html>
