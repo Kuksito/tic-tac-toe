@@ -164,9 +164,6 @@ const startGame = () => {
             }, true)
         );
     };
-
-    return {displayPlayerChoice};
-
 };
 
 const game = startGame();
