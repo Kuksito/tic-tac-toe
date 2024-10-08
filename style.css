@@ -30,13 +30,52 @@ p, h1, h2, h3, h4, h5, h6 {
     isolation: isolate;
 }
 
+.players-names{
+    display: flex;
+    width: 600px;
+    margin: 50px auto 0;
+    padding: 20px;
+    text-align: left;
+    background-color: #303133e6;
+    color: #fff;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.players-names input[type="text"], .players-names label{
+    display: flex;
+    font-size: 1.3rem;
+    padding-left: 5px;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.btn{
+    width: 115px;
+    margin: 0 auto;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 5px 7px;
+    border: none;
+    border-radius: 13px;
+    background: #c9ffe4;
+    text-align: center;
+    cursor: pointer;
+}
+
+.restart{
+    display: none;
+    justify-content: center;
+    margin: 50px auto 0;
+}
+
 .gameboard{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
     width: 600px;
     height: 600px;
-    margin: 100px auto 10px;
+    margin: 70px auto 10px;
 }
 
 .cell{
@@ -56,7 +95,7 @@ p, h1, h2, h3, h4, h5, h6 {
     border-bottom-style: none;
 }
 
-/* when computer randomly choose a cell */
+/* when player two click on a cell */
 
 .cell.o, .cell.x{
     position: relative;
@@ -76,7 +115,7 @@ p, h1, h2, h3, h4, h5, h6 {
     height: 150px;
 }
 
-/* when player click on a cell */
+/* when player one click on a cell */
 
 .cell.x::before, .cell.x::after{
     left: 90px;
@@ -107,7 +146,7 @@ p, h1, h2, h3, h4, h5, h6 {
     align-items: center;
     text-align: center;
     background-color: #303133e6;
-    margin: 0 auto;
+    margin: 0 auto 30px;
     width: 600px;
     height: 80px;
     color: #fff;
